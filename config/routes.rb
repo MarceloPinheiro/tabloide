@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     root to: "promotions#index"
     resources :promotions do
       post :promotion_product
+      delete :promotion_product_destroy
     end
     resources :categories
     resources :products

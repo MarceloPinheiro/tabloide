@@ -2,6 +2,7 @@ module Admin
   class PromotionsController < AdminController
     before_action :restrict_access_for_admin!
     before_action :promotion_load, only: %i[edit update show]
+    before_action :promotion_product_load, only: %i[promotion_product_destroy]
     layout "admin"
 
     def index
@@ -37,9 +38,19 @@ module Admin
       save_promotion_product!
     end
 
+    def promotion_product_destroy
+      promotion = @promotion_product.promotion_id
+      @promotion_product.destroy!
+      redirect_to action: "show", id: promotion
+    end
+
     private
       def promotion_load
         @promotion = Promotion.find(params[:id])
+      end
+
+      def promotion_product_load
+        @promotion_product = PromotionProduct.find(params[:promotion_id])
       end
 
       def promotion_params

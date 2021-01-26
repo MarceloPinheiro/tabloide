@@ -28,7 +28,7 @@
             <td><%=product.discount%></td>
             <td><%=product.special%></td>
             <td>
-              <p><%=link_to "remover", admin_product_url(product), :class => 'btn btn-sm btn-outline-danger' %></p>
+              <p><%=link_to "remover", admin_promotion_promotion_product_destroy_url(product), method: :delete, data: { confirm: "Deseja excluir?"}, :class => 'btn btn-sm btn-outline-danger' %></p>
             </td>
           </tr>
         <%end%>
