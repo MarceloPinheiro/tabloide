@@ -1,9 +1,9 @@
 FactoryBot.define do
   factory :promotion do
-    title { "MyString" }
-    description { "MyText" }
-    start_promotion { "2021-01-25" }
-    end_promotion { "2021-01-25" }
+    title { Faker::Name.name }
+    description { Faker::Lorem.sentence }
+    start_promotion { Date.today }
+    end_promotion { Date.today + 5.days }
     observation { "MyText" }
   end
 end
