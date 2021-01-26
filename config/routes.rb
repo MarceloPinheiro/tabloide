@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   namespace :admin do
-    root to: "admin/promotions#index"
+    root to: "promotions#index"
     resources :promotions do
       post :promotion_product
     end
