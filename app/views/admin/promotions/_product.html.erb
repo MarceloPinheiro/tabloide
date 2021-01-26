@@ -1,0 +1,93 @@
+<h1>Produtos em promoção</h1>
+<br>
+<div class="row">
+  <div class="col-lg-12" style="text-align:right">
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalProduct">+Produto</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>&nbsp;</th>
+          <th>Produto</th>
+          <th>Preço Venda</th>
+          <th>Preço Desconto</th>
+          <th>Preço Especial</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%PromotionProduct.where(promotion_id: promotion.id).each do |product|%>
+          <tr>
+            <td><img src="<%=url_for(product.product.image) if product.product.image.attached?%>" width="100px;"></td>
+            <td><%=product.product.title%></td>
+            <td><%=product.price%></td>
+            <td><%=product.discount%></td>
+            <td><%=product.special%></td>
+            <td>
+              <p><%=link_to "remover", admin_product_url(product), :class => 'btn btn-sm btn-outline-danger' %></p>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="modalProduct" tabindex="-1" role="dialog" aria-labelledby="modalProductTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalProductTitle">Cadastrar produto na promoção</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_with(url: "/admin/promotions/"+promotion.id.to_s+"/promotion_product", local: true) do |f|%>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="form-group">
+                <input type="hidden" name="promotion_product[promotion_id]" value="<%=promotion.id.to_s%>">
+                <label for="newProduct">Produto</label>
+                <select id="newProduct" class="form-control" name="promotion_product[product_id]">
+                  <%=Product.where("id not in (?)",PromotionProduct.where(promotion_id: promotion.id).select(:product_id)).each do |product|%>
+                    <option value="<%=product.id%>"><%=product.title%></option>
+                  <%end%>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="newPrice">Preço</label>
+                <input type="text" id="newPrice" name="promotion_product[price]" class="form-control">
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="newDiscount">Desconto</label>
+                <input type="text" id="newDiscount" name="promotion_product[discount]" class="form-control">
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="form-group">
+                <label for="newSpecial">Especial</label>
+                <input type="text" id="newSpecial" name="promotion_product[special]" class="form-control">
+              </div>
+            </div>
+          </div>
+          <br>
+          <button type="submit" class="btn btn-primary">Cadastrar Produto</button>
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>

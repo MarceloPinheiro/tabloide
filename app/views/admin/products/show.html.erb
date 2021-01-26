@@ -1,0 +1,4 @@
+<h1><%=@product.title%></h1>
+<p><strong><%=@product.description%></strong></p>
+<p><img src="<%=url_for(@product.image) if @product.image.attached?%>" width="200px;"></p>
+<p><a href="/admin/products" class="btn btn-outline-primary">voltar</a></p>

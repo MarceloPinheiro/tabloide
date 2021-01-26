@@ -1,0 +1,28 @@
+<%= form_with(model: [ :admin, category], local: true) do |form| %>
+  <% if category.errors.any? %>
+    <div id="error_explanation">
+      <h2>Erros ao salvar a categoria:</h2>
+
+      <ul>
+      <% category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%=form.label :title%>
+        <%=form.text_field :title, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <%=form.submit "Salvar Categoria", :class => "btn btn-primary"%>
+    </div>
+  </div>
+<%end%>

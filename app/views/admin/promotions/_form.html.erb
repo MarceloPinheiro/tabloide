@@ -1,0 +1,66 @@
+<%= form_with(model: [ :admin, promotion], local: true, multipart: true) do |form| %>
+  <% if promotion.errors.any? %>
+    <div id="error_explanation">
+      <h2>Erros ao salvar a promoção:</h2>
+
+      <ul>
+      <% promotion.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%=form.label :title%>
+        <%=form.text_field :title, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%=form.label :description%>
+        <%=form.text_area :description, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=form.label :start_promotion%>
+        <%=form.date_field :start_promotion, :class => 'form-control' %>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      <div class="form-group">
+        <%=form.label :end_promotion%>
+        <%=form.date_field :end_promotion, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%=form.label :observation%>
+        <%=form.text_area :observation, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="form-group">
+        <%=form.label :image%>
+        <%=form.file_field :image, multiple: true, :class => 'form-control' %>
+      </div>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-lg-12">
+      <%=form.submit "Salvar Promoção", :class => "btn btn-primary"%>
+    </div>
+  </div>
+<%end%>

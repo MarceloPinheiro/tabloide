@@ -1,0 +1,20 @@
+<h1><%=@promotion.title%></h1>
+<div style="text-align:center;">
+  <%if @promotion.image.attached?%>
+    <%@promotion.image_attachments.each do |banner|%>
+      <div class="row">
+        <div class="col-lg-12">
+          <img src="<%=url_for(banner)%>" style="border-radius: 10px;">
+        </div>
+      </div>
+      <br>
+      <%= render 'products', promotion: @promotion if @first %>
+      <%@first = false%>
+      <br>
+    <%end%>
+  <%else%>
+    <%= render 'products', promotion: @promotion %>
+  <%end%>
+  <hr>
+  <p class="text-muted"><%=@promotion.description%></p>
+</div>

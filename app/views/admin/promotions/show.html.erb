@@ -1,0 +1,22 @@
+<h1><%=@promotion.title%></h1>
+<p><strong><%=@promotion.description%></strong></p>
+<ul class="nav nav-tabs" id="tabPromotion" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link" id="banner-tab" data-toggle="tab" href="#banner" role="tab" aria-controls="banner" aria-selected="false">Banners</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" id="product-tab" data-toggle="tab" href="#product" role="tab" aria-controls="product" aria-selected="true">Produtos</a>
+  </li>
+</ul>
+<br>
+<div class="tab-content" id="tabPromotionContent">
+  <div class="tab-pane fade" id="banner" role="tabpanel" aria-labelledby="banner-tab">
+    <%@promotion.image_attachments.each do |image|%>
+      <p><img src="<%=url_for(image)%>"></p>
+    <%end%>
+  </div>
+  <div class="tab-pane fade show active" id="product" role="tabpanel" aria-labelledby="product-tab">
+    <%= render 'product', promotion: @promotion %>
+  </div>
+</div>
+<p><a href="/admin/promotions" class="btn btn-outline-primary">voltar</a></p>

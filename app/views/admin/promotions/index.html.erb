@@ -1,0 +1,37 @@
+<h1>Promoções</h1>
+<br>
+<div class="row">
+  <div class="col-lg-12" style="text-align:right">
+    <%=link_to "Nova Promoção",new_admin_promotion_url(), :class => "btn btn-primary"%>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Promoção</th>
+          <th>Inicio Promoção</th>
+          <th>Fim Promoção</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@promotions.each do |promotion|%>
+          <tr>
+            <td><%=promotion.id%></td>
+            <td><%=promotion.title%></td>
+            <td><%=promotion.start_promotion%></td>
+            <td><%=promotion.end_promotion%></td>
+            <td>
+              <p><%=link_to "editar", edit_admin_promotion_url(promotion), :class => 'btn btn-sm btn-outline-info'%></p>
+              <p><%=link_to "mostrar", admin_promotion_url(promotion), :class => 'btn btn-sm btn-outline-secondary' %></p>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>

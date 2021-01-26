@@ -1,0 +1,19 @@
+<%if @promotions.nil?%>
+  <h1 class="text-danger">No momento não temos promoções em andamento, cadastre-se e receba nossas promoções</h1>
+<%else%>
+  <%@promotions.each do |promotion|%>
+    <div class="row">
+      <div class="col-lg-12">
+      <a href="/home/promotions/<%=promotion.id.to_s%>" style="text-decoration:none;">
+        <div class="devise">
+          <div class="devise-body">
+            <h3><%=promotion.title%></h3>
+            <img src="<%=url_for(promotion.image_attachments.first) if promotion.image.attached?%>" style="border-radius: 10px;">
+          </div>
+        </div>
+      </a>
+      </div>
+    </div>
+    <hr>
+  <%end%>
+<%end%>

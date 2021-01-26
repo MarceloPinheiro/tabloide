@@ -1,0 +1,8 @@
+<div class="card">
+  <div class="card-body">
+    <h4><%=product.product.title%></h4>
+    <img src="<%=url_for(product.product.image)%>" width="100px">
+    <br><br>
+    <%=Price(product)%>
+  </div>
+</div>

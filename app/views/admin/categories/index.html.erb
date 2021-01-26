@@ -1,0 +1,33 @@
+<h1>Categorias</h1>
+<br>
+<div class="row">
+  <div class="col-lg-12" style="text-align:right">
+    <%=link_to "Nova Categoria",new_admin_category_url(), :class => "btn btn-primary"%>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>id</th>
+          <th>Categoria</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%@categories.each do |category|%>
+          <tr>
+            <td><%=category.id%></td>
+            <td><%=category.title%></td>
+            <td>
+              <p><%=link_to "editar", edit_admin_category_url(category), :class => 'btn btn-sm btn-outline-info'%></p>
+              <p><%=link_to "excluir", admin_category_url(category), :class => 'btn btn-sm btn-outline-danger' %></p>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+  </div>
+</div>
