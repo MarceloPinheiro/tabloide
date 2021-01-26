@@ -1,4 +1,4 @@
-<%if @promotions.nil?%>
+<%if @promotions.length == 0%>
   <h1 class="text-danger">No momento não temos promoções em andamento, cadastre-se e receba nossas promoções</h1>
 <%else%>
   <%@promotions.each do |promotion|%>
